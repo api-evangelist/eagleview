@@ -1,0 +1,22 @@
+{
+  "provider": "eagleview",
+  "sources": [
+    "measurement-orders-v1-openapi.json"
+  ],
+  "outputs": [
+    "eagleview-order-adjustments-api-openapi.yml",
+    "eagleview-order-status-api-openapi.yml",
+    "eagleview-ordering-api-openapi.yml",
+    "eagleview-retrieving-files-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/measurement-orders-v1-openapi.json"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "measurement-orders-v1-openapi.json: upgraded swagger 2.0 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+4 apis, 4 total)"
+  ],
+  "skipped": []
+}

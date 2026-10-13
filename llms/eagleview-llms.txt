@@ -1,0 +1,116 @@
+# EagleView Developer Portal
+
+> Deep context of the physical world captured by EagleView, delivered via APIs for imagery, insights, and 3D models.
+
+Source index mirrored from https://developer.eagleview.com/documentation/ (primary API versions).
+
+## General
+
+- [Get Started](https://developer.eagleview.com/docs/general/get-started.md): Choose API → auth method → account → sandbox app → go-live.
+- [Rate Limits](https://developer.eagleview.com/docs/general/rate-limits.md): Default requests-per-second by API/endpoint, 429 handling, and high-volume patterns.
+
+## Authentication Methods
+
+- [Overview](https://developer.eagleview.com/docs/authentication/overview.md): Choose OAuth 2.0 vs API key; decision table and shared auth endpoints.
+- [Client Credentials flow](https://developer.eagleview.com/docs/authentication/client-credentials.md): Machine-to-machine OAuth2 for Property Data, Imagery, WMTS, and Measurement Orders.
+- [Authorization Code flow](https://developer.eagleview.com/docs/authentication/authorization-code.md): Server-side user-delegated access for Measurement Orders and TrueDesign™.
+- [Authorization Code with PKCE](https://developer.eagleview.com/docs/authentication/authorization-with-pkce.md): Public-client (mobile/SPA) user-delegated access for Measurement Orders and TrueDesign™.
+- [API Key](https://developer.eagleview.com/docs/authentication/api-key.md): Simple WMTS access via `x-api-key` header (or `api_key` query).
+- [Token Management](https://developer.eagleview.com/docs/authentication/token-management.md): Access/refresh token lifetime, caching guidance, and revoke endpoint.
+- [API Documentation (reference)](https://developer.eagleview.com/docs/authentication/api-documentation.md): authorize / token / revoke operations.
+- [OpenAPI Spec (JSON)](https://developer.eagleview.com/docs/authentication/openapi/authentication-v1-openapi.json): Full machine-readable OpenAPI spec.
+
+## Imagery
+
+### Imagery API (v1)
+
+- [Overview](https://developer.eagleview.com/docs/imagery/overview.md): Programmatic access to high-resolution ortho and oblique aerial imagery.
+- [Getting Started guide](https://developer.eagleview.com/docs/imagery/getting-started.md): Discover → Select workflow, capabilities (discovery/tiles/images), quick reference.
+- [Quick Start guide](https://developer.eagleview.com/docs/imagery/quick-start.md): Authenticate, discover imagery, retrieve first image in the sandbox.
+- [Understanding Imagery Types](https://developer.eagleview.com/docs/imagery/understanding-imagery-types.md): Ortho vs oblique, orthomosaics vs single-frame, tiles vs full images.
+- [Usage Examples](https://developer.eagleview.com/docs/imagery/usage-examples.md): Common discovery, orthomosaic search, image, and tile request patterns.
+- [Location Input Formats](https://developer.eagleview.com/docs/imagery/location-input-formats.md): GeoJSON, WKT, and EWKT for points, polygons, and center+radius.
+- [Working with Pagination](https://developer.eagleview.com/docs/imagery/working-with-pagination.md): `next_capture_token` and orthomosaic `page.next` patterns.
+- [Troubleshooting](https://developer.eagleview.com/docs/imagery/troubleshooting.md): Common HTTP errors, discovery/retrieval issues, sandbox limits.
+- [API Documentation (reference)](https://developer.eagleview.com/docs/imagery/api-documentation.md): Human-readable summary of discovery, images, and tile operations.
+- [OpenAPI Spec (JSON)](https://developer.eagleview.com/docs/imagery/openapi/imagery-v1-openapi.json): Full machine-readable OpenAPI spec.
+- [Sandbox](https://developer.eagleview.com/docs/imagery/sandbox.md): Sandbox bounding box and Postman client-credentials setup.
+- [Sandbox Postman Collection (JSON)](https://developer.eagleview.com/docs/imagery/imagery-v1-sandbox.postman_collection.json): Downloadable Postman collection for sandbox requests.
+
+### WMTS API (v2)
+
+- [Overview](https://developer.eagleview.com/docs/wmts/overview.md): OGC WMTS streaming of high-resolution orthoimagery for GIS/CAD tools; datums and epochs.
+- [Getting Started guide](https://developer.eagleview.com/docs/wmts/getting-started.md): Base URLs, Client Credentials / API Key auth, GetCapabilities and GetTile samples.
+- [API Documentation (reference)](https://developer.eagleview.com/docs/wmts/api-documentation.md): Human-readable summary of GetCapabilities and GetTile operations.
+- [OpenAPI Spec (JSON)](https://developer.eagleview.com/docs/wmts/openapi/wmts-v2-openapi.json): Full machine-readable OpenAPI spec.
+- [Sandbox](https://developer.eagleview.com/docs/wmts/sandbox.md): Sandbox bounding box; Client Credentials and API Key Postman setup.
+- [Sandbox Postman Collection (JSON)](https://developer.eagleview.com/docs/wmts/wmts-v2-sandbox.postman_collection.json): Downloadable Postman collection.
+
+### WMTS API (v1)
+
+- [Overview](https://developer.eagleview.com/docs/wmts-v1/overview.md): OGC WMTS streaming of high-resolution orthoimagery for GIS/CAD tools (v1).
+- [Getting Started guide](https://developer.eagleview.com/docs/wmts-v1/getting-started.md): Base URLs, Client Credentials / API Key auth, GetCapabilities and GetTile samples.
+- [API Documentation (reference)](https://developer.eagleview.com/docs/wmts-v1/api-documentation.md): Human-readable summary of GetCapabilities and GetTile operations.
+- [OpenAPI Spec (JSON)](https://developer.eagleview.com/docs/wmts-v1/openapi/wmts-v1-openapi.json): Full machine-readable OpenAPI spec.
+- [Sandbox](https://developer.eagleview.com/docs/wmts-v1/sandbox.md): Sandbox bounding box; Client Credentials and API Key Postman setup.
+- [Sandbox Postman Collection (JSON)](https://developer.eagleview.com/docs/wmts-v1/wmts-v1-sandbox.postman_collection.json): Downloadable Postman collection.
+
+## Data & Insights
+
+### Property Data API (v2)
+
+- [Overview](https://developer.eagleview.com/docs/property-data/overview.md): Data packs, key features, and core request/result functions.
+- [Getting Started guide](https://developer.eagleview.com/docs/property-data/getting-started.md): Full request/result/image-download workflow with code samples.
+- [Quick Start guide](https://developer.eagleview.com/docs/property-data/quick-start.md): Short walkthrough using the sandbox.
+- [Data Dictionary](https://developer.eagleview.com/docs/property-data/data-dictionary.md): Field-level definitions for response attributes.
+- [API Documentation (reference)](https://developer.eagleview.com/docs/property-data/api-documentation.md): Human-readable summary of property and property-summary operations.
+- [OpenAPI Spec (JSON)](https://developer.eagleview.com/docs/property-data/openapi/property-data-v2-openapi.json): Full machine-readable OpenAPI spec.
+- [Sandbox](https://developer.eagleview.com/docs/property-data/sandbox.md): Sandbox bounding box, Postman setup, and sample test addresses.
+- [Sandbox Postman Collection (JSON)](https://developer.eagleview.com/docs/property-data/property-data-v2-sandbox.postman_collection.json): Downloadable Postman collection for sandbox requests.
+
+### Property Data API (v1)
+
+- [Overview](https://developer.eagleview.com/docs/property-data-v1/overview.md): Near real-time property features and approximate measurements (v1.0).
+- [Getting Started guide](https://developer.eagleview.com/docs/property-data-v1/getting-started.md): Base URLs, Client Credentials auth, address/coordinate/callback sample requests.
+- [API Documentation (reference)](https://developer.eagleview.com/docs/property-data-v1/api-documentation.md): Human-readable summary of `/property/v1/attributes` operations.
+- [OpenAPI Spec (JSON)](https://developer.eagleview.com/docs/property-data-v1/openapi/property-data-v1-openapi.json): Full machine-readable OpenAPI spec.
+- [Sandbox](https://developer.eagleview.com/docs/property-data-v1/sandbox.md): Mocked sandbox dataset and Postman environment variables.
+- [Sandbox Postman Collection (JSON)](https://developer.eagleview.com/docs/property-data-v1/property-data-v1-sandbox.postman_collection.json): Downloadable Postman collection (preloaded sandbox addresses only).
+
+## Measurements
+
+### Measurement Orders API (v1)
+
+- [Overview](https://developer.eagleview.com/docs/measurement-orders/overview.md): Place and retrieve property measurement reports (roof, walls/windows/doors, full house) programmatically.
+- [Getting Started guide](https://developer.eagleview.com/docs/measurement-orders/getting-started.md): Apicenter base URLs, Auth Code vs Client Credentials, webhook endpoints.
+- [Webhook Security](https://developer.eagleview.com/docs/measurement-orders/webhook-security.md): JWT bearer verification via JWKS for inbound Measurement Orders webhooks.
+- [API Documentation (reference)](https://developer.eagleview.com/docs/measurement-orders/api-documentation.md): Human-readable summary of ordering, status, adjustments, and file operations.
+- [OpenAPI Spec (JSON)](https://developer.eagleview.com/docs/measurement-orders/openapi/measurement-orders-v1-openapi.json): Full machine-readable OpenAPI/Swagger spec.
+- [Sandbox](https://developer.eagleview.com/docs/measurement-orders/sandbox.md): Mocked sandbox dataset and Postman environment variables.
+- [Sandbox Postman Collection (JSON)](https://developer.eagleview.com/docs/measurement-orders/measurement-orders-v1-sandbox.postman_collection.json): Downloadable Postman collection (preloaded sandbox addresses only).
+
+## Design Tools
+
+### TrueDesign™ API (v1)
+
+- [Overview](https://developer.eagleview.com/docs/truedesign/overview.md): Solar design API for shade analysis, PV layouts, production calculations, and CAD/PDF exports.
+- [Getting Started guide](https://developer.eagleview.com/docs/truedesign/getting-started.md): Apicenter base URLs, Authorization Code / PKCE, design-change webhooks and event types.
+- [API Documentation (reference)](https://developer.eagleview.com/docs/truedesign/api-documentation.md): Human-readable summary of availability, launch, presets, optimization, versions, exports, and roof facets.
+- [Appendix (Parameter Reference)](https://developer.eagleview.com/docs/truedesign/appendix.md): Product/preset enums, filters, file types, webhook event list.
+- [OpenAPI Spec (JSON)](https://developer.eagleview.com/docs/truedesign/openapi/truedesign-v1-openapi.json): Full machine-readable OpenAPI spec.
+- [Sandbox](https://developer.eagleview.com/docs/truedesign/sandbox.md): Mocked sandbox dataset, happy-path/error report IDs, Postman env vars.
+- [Sandbox Postman Collection (JSON)](https://developer.eagleview.com/docs/truedesign/truedesign-v1-sandbox.postman_collection.json): Downloadable Postman collection (preloaded sandbox IDs only).
+
+## Reference hosts
+
+- Auth token endpoint: `https://apicenter.eagleview.com/oauth2/v1/token`
+- Production API host (Imagery / Property Data / WMTS): `https://apis.eagleview.com`
+- Sandbox API host (Imagery / Property Data / WMTS): `https://sandbox.apis.eagleview.com`
+- Production API host (Measurement Orders / TrueDesign™): `https://apicenter.eagleview.com`
+- Sandbox API host (Measurement Orders / TrueDesign™): `https://sandbox.apicenter.eagleview.com`
+
+## Optional
+
+- [Terms of use](https://www.eagleview.com/terms/)
+- [Privacy Policy](https://www.eagleview.com/privacy-statement/)
+- Partner Integrations / Brand Kit / Release Notes: see https://developer.eagleview.com/documentation/

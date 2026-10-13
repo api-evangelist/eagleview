@@ -1,0 +1,23 @@
+generated: '2026-10-13'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://developer.eagleview.com/docs/imagery/sandbox.md
+sources:
+- https://developer.eagleview.com/docs/imagery/sandbox.md
+- https://developer.eagleview.com/docs/imagery/imagery-v1-sandbox.postman_collection.json
+- https://developer.eagleview.com/docs/wmts/sandbox.md
+- https://developer.eagleview.com/docs/wmts/wmts-v2-sandbox.postman_collection.json
+description: EagleView sandbox information extracted from documentation.
+modes:
+- name: sandbox
+  base_url: https://sandbox.apis.eagleview.com
+  how_to_get_access: Obtain a short‑lived (1 hour) access token via the Client Credentials flow. Use the /oauth2/v1/token endpoint at the token
+    base URL with the sandbox CLIENT_ID and CLIENT_SECRET. The token is returned in the response as access_token and should be supplied as a Bearer
+    token in subsequent API calls. An API Key can also be used for WMTS endpoints after provisioning a sandbox API Key.
+note: No test‑specific values (e.g., test cards, accounts, amounts) or time‑simulation features are documented. The sandbox mirrors production
+  behavior and is limited to a fixed geographic bounding box in Omaha, Nebraska.
+docs:
+- https://developer.eagleview.com/docs/imagery/sandbox.md
+- https://developer.eagleview.com/docs/imagery/imagery-v1-sandbox.postman_collection.json
+- https://developer.eagleview.com/docs/wmts/sandbox.md
+- https://developer.eagleview.com/docs/wmts/wmts-v2-sandbox.postman_collection.json

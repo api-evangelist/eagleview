@@ -1,0 +1,26 @@
+generated: '2026-10-13'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://developer.eagleview.com/docs/imagery/working-with-pagination.md
+sources:
+- https://developer.eagleview.com/docs/imagery/working-with-pagination.md
+- https://developer.eagleview.com/docs/imagery/getting-started.md
+- https://developer.eagleview.com/docs/imagery/quick-start.md
+- https://developer.eagleview.com/docs/wmts/getting-started.md
+idempotency:
+  coverage: none
+  evidence: The documentation does not describe any idempotency key or mechanism for write operations.
+pagination:
+  style: token‑based
+  params:
+  - next_capture_token (used in discovery rank/location requests)
+  - page.next (used in orthomosaics search requests)
+  - page.size (optional page size parameter)
+  response_fields:
+  - next_capture_token (in discovery responses)
+  - page.next (in orthomosaics responses)
+  evidence: Pagination uses a token returned in the response (either `next_capture_token` or `page.next`) that must be sent in the next request
+    to retrieve subsequent pages.
+versioning: API URLs include major version segments such as `/v3/` for Imagery and `/v2/` for WMTS.
+authentication: OAuth 2.0 Client Credentials flow is used for the Imagery API; the WMTS API also supports API‑Key authentication.
+docs: https://developer.eagleview.com/docs/imagery/working-with-pagination.md

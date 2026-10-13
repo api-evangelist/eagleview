@@ -1,23 +1,154 @@
 aid: eagleview
+
 name: EagleView
-description: 'EagleView is a company surfaced via the API Evangelist harvest backlog (source: tag-qc)
-  and added to the network as a stub for full-pipeline profiling.'
+
+image: https://www.eagleview.com/wp-content/uploads/2025/06/EV-Opengraph-Thumbnail-Logo.png
+
+description: EagleView provides geospatial intelligence, aerial imagery, and data solutions for property intelligence. Their platform offers high‑resolution
+  aerial imagery, 3D models, property reports, and AI‑driven analytics for residential, commercial, and government customers. EagleView serves
+  industries such as roofing, solar, insurance, utilities, and emergency management, delivering actionable insights through cloud‑based applications
+  and APIs.
+
 url: https://raw.githubusercontent.com/api-evangelist/eagleview/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:tag-qc
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-13 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-13'
+
 modified: '2026-10-13'
+
 tags:
-- Company
-apis: []
+- Geospatial
+- AerialImagery
+- DataAnalytics
+- RealEstate
+- Insurance
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/eagleview-agentic-access.yml
+- type: RateLimits
+  url: rate-limits/eagleview-rate-limits.yml
+- type: Plans
+  url: plans/eagleview-plans-pricing.yml
+- type: Spectral
+  url: rules/eagleview-rules.yml
+- type: Vocabulary
+  url: vocabulary/eagleview-vocabulary.yml
+- type: DataModel
+  url: data-model/eagleview-data-model.yml
+- type: Conventions
+  url: conventions/eagleview-conventions.yml
+- type: Sandbox
+  url: sandbox/eagleview-sandbox.yml
+- type: Authentication
+  url: authentication/eagleview-authentication.yml
+- type: ErrorCatalog
+  url: errors/eagleview-problem-types.yml
+- type: Conformance
+  url: conformance/eagleview-conformance.yml
+- type: LLMsTxt
+  url: llms/eagleview-llms.txt
+- type: Hosts
+  url: hosts/eagleview-hosts.yml
+- type: TermsOfService
+  url: https://www.eagleview.com/terms
+- type: PrivacyPolicy
+  url: https://www.eagleview.com/privacy-statement/
+- type: Newsroom
+  url: https://www.eagleview.com/newsroom/
+- type: Leadership
+  url: https://www.eagleview.com/leadership/
+- type: DomainSecurity
+  url: security/eagleview-domain-security.yml
 - type: Website
   url: https://www.eagleview.com/
+- type: DeveloperPortal
+  url: https://developer.eagleview.com/
+- type: APIReference
+  url: https://developer.eagleview.com/api/
+- type: Pricing
+  url: https://www.eagleview.com/pricing/
+- type: Blog
+  url: https://www.eagleview.com/blogs/
+- type: HelpCenter
+  url: https://www.eagleview.com/help-center/
+
+apis:
+- aid: eagleview:eagleview-order-adjustments-api
+  name: EagleView Order Adjustments API
+  description: >-
+    Occasionally, a report will need to be adjusted by the customer before it can continue processing.
+    This could be due to a necessary upgrade/downgrade due to the image quality available.
+  humanURL: https://developer.eagleview.com/docs/measurement-orders
+  baseURL: https://sandbox.apicenter.eagleview.com
+  tags:
+  - Order Adjustments
+  properties:
+  - type: OpenAPI
+    url: openapi/eagleview-order-adjustments-api-openapi.yml
+- aid: eagleview:eagleview-order-status-api
+  name: EagleView Order Status API
+  description: >-
+    Once the report has been created in the Ordering stage, it is possible to query the status of the
+    order via Order Status API methods.
+  humanURL: https://developer.eagleview.com/docs/measurement-orders
+  baseURL: https://sandbox.apicenter.eagleview.com
+  tags:
+  - Order Status
+  properties:
+  - type: OpenAPI
+    url: openapi/eagleview-order-status-api-openapi.yml
+- aid: eagleview:eagleview-ordering-api
+  name: EagleView Ordering API
+  description: >-
+    The EagleView ordering process offers many API methods which allow for varying degrees of customization.
+    Ordering is the first step in the EagleView structure measurement process, as it kickstarts the report
+    creation process.
+  humanURL: https://developer.eagleview.com/docs/measurement-orders
+  baseURL: https://sandbox.apicenter.eagleview.com
+  tags:
+  - Ordering
+  properties:
+  - type: OpenAPI
+    url: openapi/eagleview-ordering-api-openapi.yml
+- aid: eagleview:eagleview-retrieving-files-api
+  name: EagleView Retrieving Files API
+  description: >-
+    Once a report has completed processing, it is possible to retrieve it via Retrieving Files API methods.
+  humanURL: https://developer.eagleview.com/docs/measurement-orders
+  baseURL: https://sandbox.apicenter.eagleview.com
+  tags:
+  - Retrieving Files
+  properties:
+  - type: OpenAPI
+    url: openapi/eagleview-retrieving-files-api-openapi.yml
+x-coverage:
+  state: none
+  reason: no-developer-program
+  method: derived
+  generated: '2026-10-13'
+  generator: derive-coverage.py (pre-flight evidence)
+  detail: the company publishes no developer documentation host and no machine-readable contract on its own domain
+  evidence:
+  - url: https://www.eagleview.com/
+    status: 200
+x-enrichment:
+  date: '2026-10-13'
+  status: enriched
+  artifacts_added: 19
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

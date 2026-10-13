@@ -1,0 +1,32 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/measurement-orders-v1-openapi.json
+vocabulary:
+  name: EagleView Domain Vocabulary
+  description: 'Terms declared by EagleView''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-13'
+  terms:
+  - term: Ordering
+    definition: The EagleView ordering process offers many API methods which allow for varying degrees of customization. Ordering is the first
+      step in the EagleView structure measurement process, as it kickstarts the report creation process.
+    tags:
+    - Resource Group
+    source: openapi/measurement-orders-v1-openapi.json
+  - term: Order Status
+    definition: Once the report has been created in the Ordering stage, it is possible to query the status of the order via Order Status API methods.
+    tags:
+    - Resource Group
+    source: openapi/measurement-orders-v1-openapi.json
+  - term: Order Adjustments
+    definition: Occasionally, a report will need to be adjusted by the customer before it can continue processing. This could be due to a necessary
+      upgrade/downgrade due to the image quality available.
+    tags:
+    - Resource Group
+    source: openapi/measurement-orders-v1-openapi.json
+  - term: Retrieving Files
+    definition: Once a report has completed processing, it is possible to retrieve it via Retrieving Files API methods.
+    tags:
+    - Resource Group
+    source: openapi/measurement-orders-v1-openapi.json

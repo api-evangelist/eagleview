@@ -1,0 +1,16 @@
+generated: '2026-10-13'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://developer.eagleview.com/docs/general/rate-limits.md
+sources:
+- https://developer.eagleview.com/docs/general/rate-limits.md
+name: EagleView rate limits
+limits:
+- name: WMTS - GetTile
+  limit_text: 500 requests per second
+  max: 500
+  window: second
+  endpoint: GetTile
+exhaustion_status: 429
+docs: https://developer.eagleview.com/docs/general/rate-limits.md
+note: 8 extracted row(s) were dropped because their quote was not on the page.

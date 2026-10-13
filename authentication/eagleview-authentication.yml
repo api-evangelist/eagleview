@@ -1,0 +1,18 @@
+generated: '2026-10-13'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://developer.eagleview.com/docs/authentication/overview.md
+sources:
+- https://developer.eagleview.com/docs/authentication/overview.md
+- https://developer.eagleview.com/docs/authentication/client-credentials.md
+- https://developer.eagleview.com/docs/authentication/authorization-code.md
+- https://developer.eagleview.com/docs/authentication/authorization-with-pkce.md
+description: Eagleview supports OAuth 2.0 and API key authentication.
+schemes:
+- type: apiKey
+  name: Eagleview API Key
+  evidence: Include your key in the request header or query string.
+  location: header or query
+  how_to_obtain: An API key provided via the Eagleview developer portal.
+docs: https://developer.eagleview.com/docs/authentication/overview.md
+note: 1 extracted row(s) were dropped because their quote was not on the page.

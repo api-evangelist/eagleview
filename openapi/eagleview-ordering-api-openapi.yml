@@ -1,0 +1,933 @@
+openapi: 3.2.0
+info:
+  description: '# Endpoint
+
+    The endpoint for the sandbox integrations environment is: https://sandbox.apicenter.eagleview.com.'
+  version: 1.0.0
+  title: Measurement Orders Ordering API
+servers:
+- url: https://sandbox.apicenter.eagleview.com/
+tags:
+- name: Ordering
+  description: The EagleView ordering process offers many API methods which allow for varying degrees of customization. Ordering is the first step in the EagleView structure measurement process, as it kickstarts the report creation process.
+paths:
+  /GetAvailableProducts:
+    get:
+      description: The GetAvailableProducts method is useful in determining which products are available to the authenticating customer. This method is optional if it is already known which products are enabled on the authenticating user's account.
+      operationId: GET/v2/Product/GetAvailableProducts
+      tags:
+      - Ordering
+      summary: GetAvailableProducts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetAvailableProductsResponseBody'
+        '401':
+          description: Provided Customer {0} Does Not Allow Authenticated User To GetAvailableProducts On Their Behalf
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAvailableProductsUnAuthorizedResponseBody'
+        '404':
+          description: Customer details not found
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+      - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: GET /v2/Product/GetAvailableProducts
+  /v2/Order/PriceOrder:
+    post:
+      description: The PriceOrder method is useful in determining the price of an order. This method is optional and not required when placing an order.
+      operationId: POST/v2/Order/PriceOrder
+      tags:
+      - Ordering
+      summary: PriceOrder
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PriceOrderResponseBody'
+        '401':
+          description: Provided PlaceOrderUser {0} Does Not Allow Authenticated User To Place Orders On Their Behalf
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceOrderUnAuthorizedResponseBody'
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceOrder'
+        required: true
+      x-operation-id-source: normalized
+      x-operation-id-original: POST /v2/Order/PriceOrder
+  /v2/Order/PlaceOrder:
+    post:
+      description: The PlaceOrder method is the primary mechanism of the ordering process, as it will actually create the order. A successful PlaceOrder call will return a unique Report Id, which can then be used in other method calls.
+      operationId: POST/v2/Order/PlaceOrder
+      tags:
+      - Ordering
+      summary: PlaceOrder
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlaceOrderResponseBody'
+        '400':
+          description: Invalid credit card. Please verify your billing information and try again. Customer Service is available at 1-866-659-8439
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceOrderBadResponseBody'
+        '401':
+          description: Provided PlaceOrderUser {0} Does Not Allow Authenticated User To Place Orders On Their Behalf
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceOrderUnAuthorizedResponseBody'
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceOrder'
+        required: true
+      x-operation-id-source: normalized
+      x-operation-id-original: POST /v2/Order/PlaceOrder
+  /v3/Order/GetAccountDetails:
+    get:
+      description: GetAccountDetails API method is useful in determining if Billing exists for the user with passed token .
+      operationId: GET/v3/Order/GetAccountDetails
+      tags:
+      - Ordering
+      summary: GetAccountDetails
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V3GetAccountDetailsResponseBody'
+        '401':
+          description: Unauthorized user. Please try again with authorized user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAccountDetailsUnAuthorizedResponseBody'
+      security:
+      - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: GET /v3/Order/GetAccountDetails
+  /v1/Product/SolarProductAvailability:
+    post:
+      description: 'The Product Availability API allows you to check if EagleView has the required imagery to process one or more Solar Products. This process only checks if imagery is available. EagleView can determine if the imagery is sufficient only after an order is placed for the requested product.
+
+
+        **NOTE:** This functionality only supports PrimaryProductIds 11, 62, 90, and 91.'
+      operationId: POST/v1/Product/SolarProductAvailability
+      tags:
+      - Ordering
+      summary: SolarProductAvailability
+      responses:
+        '200':
+          description: Availablility check successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductAvailabilityResponseDto'
+        '204':
+          description: Details not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto204'
+        '400':
+          description: Bad Request - Invalid input param
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDto'
+        '500':
+          description: An error occurred while processing the request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductAvailability'
+        required: true
+  /v2/Product/GetReportUpgradeProducts:
+    get:
+      description: The GetReportUpgradeProducts method is useful in determining to which products the specified report can be upgraded. It is suggested that this method be used before making the PlaceUpgradeOrder call so that the user can upgrade to one of the available products.
+      operationId: GET/v2/Product/GetReportUpgradeProducts
+      tags:
+      - Ordering
+      summary: GetReportUpgradeProducts
+      parameters:
+      - name: reportId
+        description: Unique id generated by EagleView when an order is placed.
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetReportUpgradeProductsResponseBody'
+        '404':
+          description: Report data not found or user does not have access
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Report cannot be upgraded as it has not been completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportUpgradeIntServerErrorResponseBody'
+      security:
+      - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: GET /v2/Product/GetReportUpgradeProducts
+  /v2/Order/PlaceUpgradeOrder:
+    post:
+      description: The PlaceUpgradeOrder method is used for upgrading a report to a premium report.
+      operationId: POST/v2/Order/PlaceUpgradeOrder
+      tags:
+      - Ordering
+      summary: PlaceUpgradeOrder
+      responses:
+        '200':
+          description: Returns new ReportId of upgraded report.
+          content:
+            application/json:
+              schema:
+                type: integer
+        '400':
+          description: Invalid credit card. Please verify your billing information and try again. Customer Service is available at 1-866-659-8439
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceUpgradeOrderBadRequestResponseBody'
+        '404':
+          description: Requested reports are invalid or ineligible for upgrade
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: Report cannot be upgraded as it has not been completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportUpgradeIntServerErrorResponseBody'
+      security:
+      - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceUpgradeOrder'
+        required: true
+      x-operation-id-source: normalized
+      x-operation-id-original: POST /v2/Order/PlaceUpgradeOrder
+components:
+  schemas:
+    CurrentOrder:
+      type: object
+      properties:
+        ReportId:
+          type: integer
+          description: Unique identifier generated by EagleView when a report is ordered.
+        MeasurementRequestTypeId:
+          type: integer
+          description: Measurement Instruction Type
+        ProductId:
+          type: integer
+          description: Primary Product Id
+        ProductDeliveryId:
+          type: integer
+          description: Delivery Product Id
+        AddOnProductIds:
+          type: array
+          items:
+            type: integer
+          description: Add-On Product Ids
+        AdditionalEmails:
+          type: string
+          description: Comma separated list of emails to be added as delivery recipients.
+        ClaimNumber:
+          type: string
+          description: Customer provided claim number for this report.
+        ClaimInfo:
+          type: string
+          description: Customer provided claim information for this report.
+        PONumber:
+          type: string
+          description: Customer provided PO number for this report.
+        DateOfLoss:
+          type: string
+          format: date-time
+          description: Custom date of loss field.
+        CatId:
+          type: string
+          description: Custom catastrophe Id field.
+    addOnProducts:
+      type: object
+      properties:
+        productID:
+          type: integer
+          description: Add-On Product Id
+        name:
+          type: string
+          description: Add-On Product Name
+        description:
+          type: string
+          description: Add-on Product Description
+        isTemporarilyUnavailable:
+          type: boolean
+          description: Indicates the availability of the product to order.
+        priceMin:
+          type: number
+          format: float
+          description: Minimum price for a product.
+        priceMax:
+          type: number
+          format: float
+          description: Maximum price for a product.
+    GetAccountDetailsUnAuthorizedResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Unauthorized user. Please try again with authorized user
+    PlaceOrderUnAuthorizedResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Provided PlaceOrderUser {0} Does Not Allow Authenticated User To Place Orders On Their Behalf
+    OrderReports:
+      type: object
+      properties:
+        ReportAddresses:
+          $ref: '#/components/schemas/ReportAddresses'
+        BuildingId:
+          type: string
+          maxLength: 50
+          description: When there are multiple structures at the same address, each structure is identified by giving an ID. This ID is known as the BuildingId.
+        PrimaryProductId:
+          type: integer
+          description: Primary Product Id
+        DeliveryProductId:
+          type: integer
+          description: Delivery Product Id
+        AddOnProductIds:
+          type: array
+          items:
+            type: integer
+          description: Add-On Product Ids
+        MeasurementInstructionType:
+          type: integer
+          description: Measurement Instruction Type
+        ReportAttributes:
+          $ref: '#/components/schemas/ReportAttributes'
+        ClaimNumber:
+          type: string
+          maxLength: 100
+          description: Customer provided claim number for this report.
+        ClaimInfo:
+          type: string
+          maxLength: 100
+          description: Customer provided claim information for this report.
+        BatchId:
+          type: string
+          maxLength: 50
+          description: Custom batch Id for this report.
+        CatId:
+          type: string
+          maxLength: 50
+          description: Custom catastrophe Id field.
+        ChangesInLast4Years:
+          type: boolean
+          description: Indicates if there have been changes at this address in the past 4 years.
+        PONumber:
+          type: string
+          maxLength: 45
+          description: Customer provided PO number for this report.
+        Comments:
+          type: string
+          maxLength: 512
+          description: Customer comments from report.
+        ReferenceId:
+          type: string
+          maxLength: 100
+          description: Customer provided referenceId used for returning data to customer APIs.
+        InsuredName:
+          type: string
+          maxLength: 100
+          description: Customer provided insured name for this report.
+        UpgradeFromReportId:
+          type: integer
+          description: Id of the report that is being upgraded.
+        PolicyNumber:
+          type: string
+          maxLength: 100
+          description: Customer provided policy number for this report.
+        DateOfLoss:
+          type: string
+          format: date-time
+          description: Custom date of loss field.
+      required:
+      - ReportAddresses
+      - PrimaryProductId
+      - DeliveryProductId
+      - MeasurementInstructionType
+      - ChangesInLast4Years
+    AddOnProductPriceQuotes:
+      type: object
+      properties:
+        ProductId:
+          type: integer
+          description: Add-On Product Id
+        MinPrice:
+          type: number
+          format: float
+          description: Minimum price of the product.
+        MaxPrice:
+          type: number
+          format: float
+          description: Maximum price of the product.
+    ErrorDto:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Bad Request - verify your input parameters.
+          description: Bad Request - verify your input parameters.
+    GetAvailableProductsResponseBody:
+      type: object
+      properties:
+        productID:
+          type: integer
+          description: Primary Product Id
+        name:
+          type: string
+          description: Product Name
+        description:
+          type: string
+          description: Product Description
+        productGroup:
+          type: string
+          description: Product group name. This field is deprecated and will return a null value.
+        isTemporarilyUnavailable:
+          type: boolean
+          description: Indicates the availability of the product to order.
+        priceMin:
+          type: number
+          format: float
+          description: Minimum price for a product.
+        priceMax:
+          type: number
+          format: float
+          description: Maximum price for a product.
+        deliveryProducts:
+          $ref: '#/components/schemas/deliveryProducts'
+        addOnProducts:
+          $ref: '#/components/schemas/addOnProducts'
+        measurementInstructionTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/MeasurementRequestType'
+          description: Measurement Instruction Type
+        TypeOfStructure:
+          type: integer
+          description: Structure Type
+        IsRoofProduct:
+          type: boolean
+          description: Indicates if this is a roof product.
+        SortOrder:
+          type: integer
+          description: Order to display products.
+        AllowsUserSubmittedPhotos:
+          type: boolean
+          description: Denotes if this PDF report can display user submitted photos.
+    PlaceUpgradeOrder:
+      type: object
+      properties:
+        ReportId:
+          type: integer
+          description: Unique identifier generated by EagleView when a report is ordered.
+        MeasurementRequestTypeId:
+          type: integer
+          description: Measurement Instruction Type
+        ProductId:
+          type: integer
+          description: Primary Product Id
+        ProductDeliveryId:
+          type: integer
+          description: Delivery Product Id
+        AddOnProductIds:
+          type: array
+          items:
+            type: integer
+          description: Add-On Product Ids
+        AdditionalEmails:
+          type: string
+          description: Comma separated list of emails to be added as delivery recipients.
+        ClaimNumber:
+          type: string
+          maxLength: 100
+          description: Customer provided claim number for this report.
+        ClaimInfo:
+          type: string
+          maxLength: 100
+          description: Customer provided claim information for this report.
+        PONumber:
+          type: string
+          maxLength: 45
+          description: Customer provided PO number for this report.
+        DateOfLoss:
+          type: string
+          format: date-time
+          description: Custom date of loss field.
+        CatId:
+          type: string
+          maxLength: 50
+          description: Custom catastrophe Id field.
+      required:
+      - ReportId
+      - MeasurementRequestTypeId
+      - ProductId
+      - ProductDeliveryId
+    ReportPriceQuotes:
+      type: object
+      properties:
+        PrimaryProductPriceQuote:
+          $ref: '#/components/schemas/PrimaryProductPriceQuote'
+        DeliveryProductPriceQuote:
+          $ref: '#/components/schemas/DeliveryProductPriceQuote'
+        AddOnProductPriceQuotes:
+          $ref: '#/components/schemas/AddOnProductPriceQuotes'
+    PriceOrderUnAuthorizedResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Provided PlaceOrderUser {0} Does Not Allow Authenticated User To Place Orders On Their Behalf
+    ProductAvailabilityResponseDto:
+      type: object
+      properties:
+        JobId:
+          type: string
+          example: bce9b468-bca7-4eef-9390-3cd99748e7c1
+          description: JobId for the API request on solar product availability.
+        Address:
+          type: string
+          example: 2001 Via Teca, San Clemente, California 92673, United States
+          description: Comma separated string in the following format "Address,City,State Zip,Country".
+        Latitude:
+          type: number
+          format: float
+          example: '33.444480'
+          description: Latitude of Address.
+        Longitude:
+          type: number
+          format: float
+          example: '-117.619490'
+          description: Longitude of Address.
+        AvailabilityStatus:
+          type: array
+          description: Array of solar product availability by Product. True is available. False is not available.
+          items:
+            type: object
+            properties:
+              isAvailable:
+                type: boolean
+              productId:
+                type: number
+                example: 91
+        JobStatus:
+          type: string
+          example: Completed
+          description: Complete status specified JobId.
+        RequestId:
+          type: string
+          example: 07540e27-0485-405a-abba-efa46487c90e
+          description: RequestId for solar product availability API call.
+    DeliveryProductPriceQuote:
+      type: object
+      properties:
+        ProductId:
+          type: integer
+          description: Delivery Product Id
+        MinPrice:
+          type: number
+          format: float
+          description: Minimum price of the product.
+        MaxPrice:
+          type: number
+          format: float
+          description: Maximum price of the product.
+    PrimaryProductPriceQuote:
+      type: object
+      properties:
+        ProductId:
+          type: integer
+          description: Primary Product Id
+        MinPrice:
+          type: number
+          format: float
+          description: Minimum price of the product.
+        MaxPrice:
+          type: number
+          format: float
+          description: Maximum price of the product.
+    CreditCardData:
+      type: object
+      properties:
+        CardFirstName:
+          type: string
+          description: First name on credit card.
+        CardLastName:
+          type: string
+          description: Last name on credit card
+        ExpirationMonth:
+          type: integer
+          description: Month of card expiration.
+        ExpirationYear:
+          type: integer
+          description: Year of card expiration.
+        CreditCardNumber:
+          type: string
+          description: Credit card number.
+        CreditCardType:
+          type: integer
+          description: Credit Card Type
+    ReportAttributes:
+      type: object
+      properties:
+        Attribute:
+          type: integer
+          description: Attributes
+        Value:
+          type: string
+          description: Value for related <code>Attribute</code> found in the description column of the Available Attributes table.
+      required:
+      - Attribute
+    ErrorData:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error occured while processing the product availability request.
+          description: Error occured while processing the product availability request.
+    ReportAddresses:
+      type: object
+      properties:
+        Address:
+          type: string
+          maxLength: 50
+          description: Street address.
+        City:
+          type: string
+          maxLength: 50
+          description: City of address.
+        State:
+          type: string
+          maxLength: 50
+          description: State of address.
+        Zip:
+          type: string
+          maxLength: 50
+          description: Zip code of address.
+        Country:
+          type: string
+          maxLength: 50
+          description: Country of address.
+        Latitude:
+          type: number
+          format: float
+          description: Latitude of address.
+        Longitude:
+          type: number
+          format: float
+          description: Longitude of address.
+        AddressType:
+          type: integer
+          description: Address Types
+      required:
+      - Address
+      - City
+      - State
+      - Zip
+      - AddressType
+    Discounts:
+      type: object
+      properties:
+        Description:
+          type: string
+          description: Description of the discount applicable to the order.
+        MinAmount:
+          type: number
+          format: float
+          description: Minimum amount of the discount.
+        MaxAmount:
+          type: number
+          format: float
+          description: Maximum amount of the discount.
+        RejectionMessage:
+          type: string
+          description: Explanation of why the promo code is not applicable to the order.
+    ReportUpgradeIntServerErrorResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Report cannot be upgraded as it has not been completed
+    ProductAvailability:
+      type: object
+      properties:
+        Address:
+          type: string
+          example: 2001 Via Teca, San Clemente, California 92673, United States
+          description: Comma separated string in the following format "Address,City,State Zip,Country".
+        Latitude:
+          type: number
+          format: float
+          example: '33.444480'
+          description: Latitude of the Address.
+        Longitude:
+          type: number
+          format: float
+          example: '-117.619490'
+          description: Longitude of the Address.
+        ProductList:
+          description: Primary Product Id
+          type: array
+          items:
+            type: number
+            example: 91
+        VintageExtension:
+          type: boolean
+          example: 'false'
+          description: For orders that contain solar shade analysis. True allows for imagery up to 8 years old. False allows for imagery up to 4 years old.
+      required:
+      - Address
+      - Latitude
+      - Longitude
+      - ProductList
+    AvailableProducts:
+      type: object
+      properties:
+        productID:
+          type: integer
+          description: Primary Product Id
+        name:
+          type: string
+          description: Product Name
+        description:
+          type: string
+          description: Product Description
+        productGroup:
+          type: string
+          description: Product group name. This field is deprecated and will return a null value.
+        isTemporarilyUnavailable:
+          type: boolean
+          description: Indicates the availability of the product to order.
+        priceMin:
+          type: number
+          format: float
+          description: Minimum price for a product.
+        priceMax:
+          type: number
+          format: float
+          description: Maximum price for a product.
+        deliveryProducts:
+          $ref: '#/components/schemas/deliveryProducts'
+        addOnProducts:
+          $ref: '#/components/schemas/addOnProducts'
+        measurementInstructionTypes:
+          type: integer
+          description: Measurement Instruction Type
+        TypeOfStructure:
+          type: integer
+          description: Structure Type
+        IsRoofProduct:
+          type: boolean
+          description: Indicates if this is a roof product.
+        SortOrder:
+          type: integer
+          description: Order in which products can be sorted to display.
+        AllowsUserSubmittedPhotos:
+          type: boolean
+          description: Determines if this report PDF can display user submitted photos.
+    PlaceOrderBadResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Invalid credit card. Please verify your billing information and try again. Customer Service is available at 1-866-659-8439
+    PlaceOrder:
+      type: object
+      properties:
+        OrderReports:
+          $ref: '#/components/schemas/OrderReports'
+        PromoCode:
+          type: string
+          description: Promotional code for report discount.
+        PlaceOrderUser:
+          type: string
+          description: Parameter is no longer used.
+        CreditCardData:
+          $ref: '#/components/schemas/CreditCardData'
+      required:
+      - OrderReports
+    GetAvailableProductsUnAuthorizedResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Provided Customer {0} Does Not Allow Authenticated User To GetAvailableProducts On Their Behalf
+    PlaceOrderResponseBody:
+      type: object
+      properties:
+        OrderId:
+          type: integer
+          description: OrderId for the new reports.
+        ReportIds:
+          type: array
+          items:
+            type: integer
+          description: Collection of reportIds for new reports.
+    MeasurementRequestType:
+      type: integer
+      description: The value of the type of measurement instruction that was applied when the report was ordered
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      example: 1
+    PriceOrder:
+      type: object
+      properties:
+        OrderReports:
+          $ref: '#/components/schemas/OrderReports'
+        PromoCode:
+          type: string
+          description: Promotional code for report discount.
+        PlaceOrderUser:
+          type: string
+          description: Parameter is no longer used.
+        CreditCardData:
+          $ref: '#/components/schemas/CreditCardData'
+      required:
+      - OrderReports
+    PlaceUpgradeOrderBadRequestResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Invalid credit card. Please verify your billing information and try again. Customer Service is available at 1-866-659-8439
+    ErrorDto204:
+      type: object
+      properties:
+        message:
+          type: string
+          example: System Details not found.
+          description: System Details not found.
+    PriceOrderResponseBody:
+      type: object
+      properties:
+        MinPrice:
+          type: number
+          format: float
+          description: Minimum total price for the order.
+        MaxPrice:
+          type: number
+          format: float
+          description: Maximum total price for the order.
+        ReportPriceQuotes:
+          $ref: '#/components/schemas/ReportPriceQuotes'
+        Discounts:
+          $ref: '#/components/schemas/Discounts'
+    GetReportUpgradeProductsResponseBody:
+      type: object
+      properties:
+        AvailableProducts:
+          $ref: '#/components/schemas/AvailableProducts'
+        CurrentOrder:
+          $ref: '#/components/schemas/CurrentOrder'
+    deliveryProducts:
+      type: object
+      properties:
+        productID:
+          type: integer
+          description: Delivery Product Id
+        name:
+          type: string
+          description: Delivery Product Name
+        description:
+          type: string
+          description: Delivery Product Description
+        isTemporarilyUnavailable:
+          type: boolean
+          description: Indicates the availability of the product to order.
+        priceMin:
+          type: number
+          format: float
+          description: Minimum price for a product.
+        priceMax:
+          type: number
+          format: float
+          description: Maximum price for a product.
+    V3GetAccountDetailsResponseBody:
+      type: object
+      properties:
+        billingExists:
+          type: boolean
+          description: Indicates if billing exists against the user.
+  securitySchemes:
+    bearerAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Unique identifier and secret provided by EagleView Integration team.
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
