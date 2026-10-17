@@ -210,112 +210,49 @@ paths:
       x-operation-id-original: GET /v1/reports/{reportId}/structure-waste-measurements
 components:
   schemas:
-    structure-waste-measurementsResponseBody:
+    From:
       type: object
       properties:
-        StructureWasteTables:
-          $ref: '#/components/schemas/StructureWasteTables'
-    GutterMeasurements:
-      type: object
-      properties:
-        DownspoutCountEstimate:
-          type: string
-          description: Estimated number of downspouts
-        StoriesNorth:
-          type: string
-          description: Number of North-facing stories
-        StoriesSouth:
-          type: string
-          description: Number of South-facing stories
-        StoriesEast:
-          type: string
-          description: Number of East-facing stories
-        StoriesWest:
-          type: string
-          description: Number of West-facing stories
-        MiterCountInside:
-          type: string
-          description: Number of interior right-angle wall corners
-        MiterCountOutside:
-          type: string
-          description: Number of exterior right-angle wall corners
-        MiterCountNon90:
-          type: string
-          description: Number of non-right-angle wall corners
-    DeliveryFilesAvailable:
-      type: object
-      properties:
-        DeliveryFileTypeId:
+        PrimaryProductId:
           type: integer
-          description: File Type
-        EffectiveDate:
+          description: Primary Product Id
+        PrimaryProductDisplayName:
           type: string
-          format: date-time
-          description: Date and time which the file was generated.
+          description: Product Name
+        TypeOfStructure:
+          type: integer
+          description: Structure Type
+    To:
+      type: object
+      properties:
+        PrimaryProductId:
+          type: integer
+          description: Primary Product Id
+        PrimaryProductDisplayName:
+          type: string
+          description: Product Name
+        TypeOfStructure:
+          type: integer
+          description: Structure Type
+    StructureWasteUnAuthorizedResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Invalid ReportID or unauthorized user. Please try again with valid reportID or authorized user
     StructureWasteNForbiddenResponseBody:
       type: object
       properties:
         Message:
           type: string
           description: Not The Report Owner or Product not supported for per structure waste measurements or Caller has SWF disabled
-    V3GetReports:
-      type: object
-      properties:
-        productsToFiterBy:
-          type: array
-          items:
-            type: integer
-          description: Primary Product Id
-        statusesToFilterBy:
-          type: string
-          description: Report Status
-        sortBy:
-          type: string
-          description: Sort By Fields
-        sortAscending:
-          type: boolean
-          description: Indicates if the sort can be ascending or descending.
-        subStatusToFilterBy:
-          type: string
-          description: Report SubStatus
-        fieldsToFilterBy:
-          type: array
-          items:
-            type: string
-          description: Fields To Filter By
-        textToFilterBy:
-          type: string
-          description: Value to apply to the specified key in fieldsToFilterBy.
-        referenceId:
-          type: string
-          description: Include all reports that have this referenceId set at the time of order creation.
-        emailCC:
-          type: string
-          description: Include all reports that match this CC email address.
-        fromDate:
-          type: string
-          description: 'Include all reports ordered after this date (Format: yyyy-MM-dd).'
-        toDate:
-          type: string
-          description: 'Include all reports ordered before this date (Format: yyyy-MM-dd).'
-      required:
-      - productsToFiterBy
-    AddOnProducts:
-      type: object
-      properties:
-        DisplayName:
-          type: string
-          description: Add-On Product Name
-        ProductId:
-          type: integer
-          description: Add-On Product Id
-    GetReportUnAuthorizedResponseBody:
+    GetReportNocontentResponseBody:
       type: object
       properties:
         Message:
           type: string
-          description: Invalid ReportID or unauthorized user. Please try again with valid reportID or authorized user
-    TotalMeasurements:
+          description: No data available for this report ID
+    MeasurementByStructure:
       type: object
       properties:
         BuildingName:
@@ -373,8 +310,24 @@ components:
           description: Total number of roof facets.
         PitchTable:
           $ref: '#/components/schemas/PitchTable'
-        GutterMeasurements:
-          $ref: '#/components/schemas/GutterMeasurements'
+    ReportStatus:
+      type: object
+      properties:
+        StatusId:
+          type: integer
+          description: Status Id
+        Status:
+          type: string
+          description: Report Status
+        SubStatusId:
+          type: integer
+          description: SubStatus Id
+        SubStatus:
+          type: string
+          description: Report SubStatus
+        DisplayStatus:
+          type: string
+          description: Report Status
     ReportImage:
       type: object
       properties:
@@ -384,44 +337,24 @@ components:
         ImageId:
           type: integer
           description: ImageId for report image.
-    GetReportsUnAuthorizedResponseBody:
+    PitchTable:
+      type: object
+      properties:
+        Pitch:
+          type: string
+          description: Slope of roof of the building
+        RoofArea:
+          type: string
+          description: Total roof area for the corresponding pitch
+        PercentageRoofArea:
+          type: string
+          description: Total percentage of the roof area covered by the corresponding pitch
+    StructureWasteNoContentResponseBody:
       type: object
       properties:
         Message:
           type: string
-          description: Authorization has been denied for this request
-    StructureWasteTables:
-      type: object
-      properties:
-        Complexity:
-          type: string
-          description: Text descriptor of complexity. (Simple, Normal, Complex)
-        StructureNumber:
-          type: integer
-          description: Identification number for each structure in the report.  Starts at 1.
-        ModelId:
-          type: string
-          description: Identification number for each model for that structure. Default is Null
-        AllPitchesUnderThreshold:
-          type: boolean
-          description: T/F. Suggested Waste Factor is only calculated for pitches > 3/12. If all pitches are under the 3/12 Threshold, will return True. In that case all suggested waste measurements will return as dashes, and the Measured Column will only return the actual measured Area in Sq Ft and Squares.
-        StructureWasteTable:
-          $ref: '#/components/schemas/StructureWasteTable'
-    ReportProducts:
-      type: object
-      properties:
-        ProductPrimaryId:
-          type: integer
-          description: Primary Product Id
-        ProductPrimary:
-          type: string
-          description: Product Name
-        ProductDelivery:
-          type: string
-          description: Delivery Product Name
-        ProductDeliveryId:
-          type: integer
-          description: Delivery Product Id
+          description: No measurements found for the report
     V3GetReportResponseBody:
       type: object
       properties:
@@ -597,62 +530,49 @@ components:
         PitchEditorURL:
           type: string
           description: PitchEditor URL for 2D reports
-    From:
+    V3GetReports:
       type: object
       properties:
-        PrimaryProductId:
-          type: integer
+        productsToFiterBy:
+          type: array
+          items:
+            type: integer
           description: Primary Product Id
-        PrimaryProductDisplayName:
+        statusesToFilterBy:
           type: string
-          description: Product Name
-        TypeOfStructure:
-          type: integer
-          description: Structure Type
-    ProductSubstitution:
-      type: object
-      properties:
-        From:
-          $ref: '#/components/schemas/From'
-        To:
-          $ref: '#/components/schemas/To'
-    addOns:
-      type: object
-      properties:
-        productID:
-          type: integer
-          description: Add-On Product Id
-        name:
+          description: Report Status
+        sortBy:
           type: string
-          description: Add-On Product Name
-        description:
+          description: Sort By Fields
+        sortAscending:
+          type: boolean
+          description: Indicates if the sort can be ascending or descending.
+        subStatusToFilterBy:
           type: string
-          description: Add-on Product Description
-    StructureWasteNoContentResponseBody:
-      type: object
-      properties:
-        Message:
+          description: Report SubStatus
+        fieldsToFilterBy:
+          type: array
+          items:
+            type: string
+          description: Fields To Filter By
+        textToFilterBy:
           type: string
-          description: No measurements found for the report
-    GetReportNocontentResponseBody:
-      type: object
-      properties:
-        Message:
+          description: Value to apply to the specified key in fieldsToFilterBy.
+        referenceId:
           type: string
-          description: No data available for this report ID
-    To:
-      type: object
-      properties:
-        PrimaryProductId:
-          type: integer
-          description: Primary Product Id
-        PrimaryProductDisplayName:
+          description: Include all reports that have this referenceId set at the time of order creation.
+        emailCC:
           type: string
-          description: Product Name
-        TypeOfStructure:
-          type: integer
-          description: Structure Type
-    MeasurementByStructure:
+          description: Include all reports that match this CC email address.
+        fromDate:
+          type: string
+          description: 'Include all reports ordered after this date (Format: yyyy-MM-dd).'
+        toDate:
+          type: string
+          description: 'Include all reports ordered before this date (Format: yyyy-MM-dd).'
+      required:
+      - productsToFiterBy
+    TotalMeasurements:
       type: object
       properties:
         BuildingName:
@@ -710,14 +630,8 @@ components:
           description: Total number of roof facets.
         PitchTable:
           $ref: '#/components/schemas/PitchTable'
-    V3GetReportsResponseBody:
-      type: object
-      properties:
-        ReportList:
-          $ref: '#/components/schemas/ReportList'
-        TotalOfReports:
-          type: integer
-          description: Total number of reports.
+        GutterMeasurements:
+          $ref: '#/components/schemas/GutterMeasurements'
     ReportList:
       type: object
       properties:
@@ -794,42 +708,6 @@ components:
         ReferenceId:
           type: string
           description: Customer provided referenceId used for returning data to customer APIs.
-    ReportStatus:
-      type: object
-      properties:
-        StatusId:
-          type: integer
-          description: Status Id
-        Status:
-          type: string
-          description: Report Status
-        SubStatusId:
-          type: integer
-          description: SubStatus Id
-        SubStatus:
-          type: string
-          description: Report SubStatus
-        DisplayStatus:
-          type: string
-          description: Report Status
-    PitchTable:
-      type: object
-      properties:
-        Pitch:
-          type: string
-          description: Slope of roof of the building
-        RoofArea:
-          type: string
-          description: Total roof area for the corresponding pitch
-        PercentageRoofArea:
-          type: string
-          description: Total percentage of the roof area covered by the corresponding pitch
-    StructureWasteUnAuthorizedResponseBody:
-      type: object
-      properties:
-        Message:
-          type: string
-          description: Invalid ReportID or unauthorized user. Please try again with valid reportID or authorized user
     StructureWasteTable:
       type: object
       properties:
@@ -845,6 +723,128 @@ components:
         Measured:
           type: string
           description: If AllPitchesUnderThreshold is True, will return the Measured Area in Sq Ft and count of Squares.
+    GetReportUnAuthorizedResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Invalid ReportID or unauthorized user. Please try again with valid reportID or authorized user
+    ReportProducts:
+      type: object
+      properties:
+        ProductPrimaryId:
+          type: integer
+          description: Primary Product Id
+        ProductPrimary:
+          type: string
+          description: Product Name
+        ProductDelivery:
+          type: string
+          description: Delivery Product Name
+        ProductDeliveryId:
+          type: integer
+          description: Delivery Product Id
+    GutterMeasurements:
+      type: object
+      properties:
+        DownspoutCountEstimate:
+          type: string
+          description: Estimated number of downspouts
+        StoriesNorth:
+          type: string
+          description: Number of North-facing stories
+        StoriesSouth:
+          type: string
+          description: Number of South-facing stories
+        StoriesEast:
+          type: string
+          description: Number of East-facing stories
+        StoriesWest:
+          type: string
+          description: Number of West-facing stories
+        MiterCountInside:
+          type: string
+          description: Number of interior right-angle wall corners
+        MiterCountOutside:
+          type: string
+          description: Number of exterior right-angle wall corners
+        MiterCountNon90:
+          type: string
+          description: Number of non-right-angle wall corners
+    addOns:
+      type: object
+      properties:
+        productID:
+          type: integer
+          description: Add-On Product Id
+        name:
+          type: string
+          description: Add-On Product Name
+        description:
+          type: string
+          description: Add-on Product Description
+    GetReportsUnAuthorizedResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Authorization has been denied for this request
+    V3GetReportsResponseBody:
+      type: object
+      properties:
+        ReportList:
+          $ref: '#/components/schemas/ReportList'
+        TotalOfReports:
+          type: integer
+          description: Total number of reports.
+    structure-waste-measurementsResponseBody:
+      type: object
+      properties:
+        StructureWasteTables:
+          $ref: '#/components/schemas/StructureWasteTables'
+    StructureWasteTables:
+      type: object
+      properties:
+        Complexity:
+          type: string
+          description: Text descriptor of complexity. (Simple, Normal, Complex)
+        StructureNumber:
+          type: integer
+          description: Identification number for each structure in the report.  Starts at 1.
+        ModelId:
+          type: string
+          description: Identification number for each model for that structure. Default is Null
+        AllPitchesUnderThreshold:
+          type: boolean
+          description: T/F. Suggested Waste Factor is only calculated for pitches > 3/12. If all pitches are under the 3/12 Threshold, will return True. In that case all suggested waste measurements will return as dashes, and the Measured Column will only return the actual measured Area in Sq Ft and Squares.
+        StructureWasteTable:
+          $ref: '#/components/schemas/StructureWasteTable'
+    ProductSubstitution:
+      type: object
+      properties:
+        From:
+          $ref: '#/components/schemas/From'
+        To:
+          $ref: '#/components/schemas/To'
+    DeliveryFilesAvailable:
+      type: object
+      properties:
+        DeliveryFileTypeId:
+          type: integer
+          description: File Type
+        EffectiveDate:
+          type: string
+          format: date-time
+          description: Date and time which the file was generated.
+    AddOnProducts:
+      type: object
+      properties:
+        DisplayName:
+          type: string
+          description: Add-On Product Name
+        ProductId:
+          type: integer
+          description: Add-On Product Id
   securitySchemes:
     bearerAuth:
       type: apiKey

@@ -145,46 +145,12 @@ paths:
       x-operation-id-original: POST /v2/Report/CloseReport
 components:
   schemas:
-    UpdateReportAddress:
+    GetReportUnAuthorizedResponseBody:
       type: object
       properties:
-        Address:
+        Message:
           type: string
-          maxLength: 50
-          description: Street address.
-        City:
-          type: string
-          maxLength: 50
-          description: City of address.
-        State:
-          type: string
-          maxLength: 50
-          description: State Abbreviations
-        Zip:
-          type: string
-          maxLength: 50
-          description: Zip code of address.
-        Country:
-          type: string
-          maxLength: 50
-          description: Country of address.
-        Latitude:
-          type: number
-          format: float
-          description: Latitude of address.
-        Longitude:
-          type: number
-          format: float
-          description: Longitude of address.
-        AddressType:
-          type: integer
-          description: Address Types
-      required:
-      - Address
-      - City
-      - State
-      - Zip
-      - AddressType
+          description: Invalid ReportID or unauthorized user. Please try again with valid reportID or authorized user
     UpdateReportAddressResponseBody:
       type: object
       properties:
@@ -228,12 +194,46 @@ components:
         VerificationResultTypeId:
           type: string
           description: For EagleView internal use only.
-    GetReportUnAuthorizedResponseBody:
+    UpdateReportAddress:
       type: object
       properties:
-        Message:
+        Address:
           type: string
-          description: Invalid ReportID or unauthorized user. Please try again with valid reportID or authorized user
+          maxLength: 50
+          description: Street address.
+        City:
+          type: string
+          maxLength: 50
+          description: City of address.
+        State:
+          type: string
+          maxLength: 50
+          description: State Abbreviations
+        Zip:
+          type: string
+          maxLength: 50
+          description: Zip code of address.
+        Country:
+          type: string
+          maxLength: 50
+          description: Country of address.
+        Latitude:
+          type: number
+          format: float
+          description: Latitude of address.
+        Longitude:
+          type: number
+          format: float
+          description: Longitude of address.
+        AddressType:
+          type: integer
+          description: Address Types
+      required:
+      - Address
+      - City
+      - State
+      - Zip
+      - AddressType
   securitySchemes:
     bearerAuth:
       type: apiKey

@@ -219,6 +219,30 @@ paths:
       x-operation-id-original: GET /v3/Report/{reportId}/file-links
 components:
   schemas:
+    FileLinksUnAuthorisedResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Only authorized report owner can make this request
+    GetReportFileInternalServerErrorResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Report is still in progress
+    GetReportFileNoContentResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Requested file does not exist
+    GetReportFileBadRequestResponseBody:
+      type: object
+      properties:
+        Message:
+          type: string
+          description: Invalid reportID. Please try again with a valid reportID
     Links:
       type: object
       properties:
@@ -232,29 +256,6 @@ components:
         FileType:
           type: string
           description: FileType extension of the given file
-    FileLinksUnAuthorisedResponseBody:
-      type: object
-      properties:
-        Message:
-          type: string
-          description: Only authorized report owner can make this request
-    File-LinksResponseBody:
-      type: object
-      properties:
-        Links:
-          $ref: '#/components/schemas/Links'
-    GetReportFileBadRequestResponseBody:
-      type: object
-      properties:
-        Message:
-          type: string
-          description: Invalid reportID. Please try again with a valid reportID
-    GetReportFileNoContentResponseBody:
-      type: object
-      properties:
-        Message:
-          type: string
-          description: Requested file does not exist
     FileDelivery:
       type: object
       properties:
@@ -262,12 +263,11 @@ components:
           type: string
           format: byte
           description: Base64 encoded byte stream
-    GetReportFileInternalServerErrorResponseBody:
+    File-LinksResponseBody:
       type: object
       properties:
-        Message:
-          type: string
-          description: Report is still in progress
+        Links:
+          $ref: '#/components/schemas/Links'
   securitySchemes:
     bearerAuth:
       type: apiKey
