@@ -105,3 +105,154 @@ plans:
   price: 91
   description: Full House Residential Gold tier
 docs: https://www.eagleview.com/pricing/
+x-canonical:
+  generated: '2026-10-23'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Construction Small (20 sq) Bronze
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Small (20 sq) Silver
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Small (20 sq) Gold
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Medium (40 sq) Bronze
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Medium (40 sq) Silver
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Medium (40 sq) Gold
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Large (40+ sq) Bronze
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Large (40+ sq) Silver
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Large (40+ sq) Gold
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Commercial Bronze
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Commercial Silver
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Construction Commercial Gold
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Gutter Residential
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Gutter Commercial
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Bid Perfect Residential
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Bid Perfect Commercial
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Walls, Windows & Doors Residential
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Walls, Windows & Doors Residential (Silver)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Walls, Windows & Doors Residential (Gold)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Walls Residential
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Walls Commercial
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Full House Residential
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Full House Residential (Silver)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Full House Residential (Gold)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
