@@ -64,5 +64,141 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-EagleView is a company surfaced via the API Evangelist harvest backlog (source: tag-qc) and added to the network as a stub for full-pipeline profiling.
-- https://www.eagleview.com/
+EagleView provides geospatial intelligence, aerial imagery, and data solutions for property intelligence. Their platform offers high‑resolution aerial imagery, 3D models, property reports, and AI‑driven analytics for residential, commercial, and government customers. EagleView serves industries such as roofing, solar, insurance, utilities, and emergency management, delivering actionable insights through cloud‑based applications and APIs.
+
+**Areas:** Geospatial · Aerial Imagery · Data Analytics · Real Estate · Insurance
+
+## EagleView on APIs.io
+
+Everything profiled for EagleView is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/eagleview/](https://apis.io/providers/eagleview/)** — or go straight to one of the APIs or properties below.
+
+### APIs (27)
+
+- [EagleView Order Adjustments API](https://apis.io/apis/eagleview/eagleview-order-adjustments-api/) — Occasionally, a report will need to be adjusted by the customer before it can continue processing. This could be due to a necessary upgrade/downgrade due to…
+- [EagleView Order Status API](https://apis.io/apis/eagleview/eagleview-order-status-api/) — Once the report has been created in the Ordering stage, it is possible to query the status of the order via Order Status API methods.
+- [EagleView Ordering API](https://apis.io/apis/eagleview/eagleview-ordering-api/) — The EagleView ordering process offers many API methods which allow for varying degrees of customization. Ordering is the first step in the EagleView…
+- [EagleView Retrieving Files API](https://apis.io/apis/eagleview/eagleview-retrieving-files-api/) — Once a report has completed processing, it is possible to retrieve it via Retrieving Files API methods.
+- [EagleView Discovery API](https://apis.io/apis/eagleview/eagleview-discovery-api/) — Find images and their corresponding metadata.
+- [EagleView Eviw API](https://apis.io/apis/eagleview/eagleview-eviwapi-api/) — The EviwAPI API from EagleView — 2 operation(s) for eviwapi.
+- [EagleView Exports API](https://apis.io/apis/eagleview/eagleview-exports-api/) — TrueDesign's Export APIs allow you to retrieve data, images, reports, and CAD files from your design.
+- [EagleView Get Capabilities API](https://apis.io/apis/eagleview/eagleview-get-capabilities-api/) — The GetCapabilities request is the starting point for a client. It returns information about the WMTS service parameters. By default, a GetCapabilities…
+- [EagleView Get Property Data API](https://apis.io/apis/eagleview/eagleview-get-property-data-api/) — When EagleView has pre-processed an address the customer will receive a full response in real time.
+- [EagleView Get Property Data (Bulk) API](https://apis.io/apis/eagleview/eagleview-get-property-data-bulk-api/) — The Get Property Data (Bulk) API from EagleView — 1 operation(s) for get property data (bulk).
+- [EagleView Get Property Summary Data API](https://apis.io/apis/eagleview/eagleview-get-property-summary-data-api/) — The Get Property Summary Data API from EagleView — 1 operation(s) for get property summary data.
+- [EagleView Get Property Summary Data (Bulk) API](https://apis.io/apis/eagleview/eagleview-get-property-summary-data-bulk-api/) — The Get Property Summary Data (Bulk) API from EagleView — 1 operation(s) for get property summary data (bulk).
+- [EagleView Get Request Status API](https://apis.io/apis/eagleview/eagleview-get-request-status-api/) — The GET /property/v1/attributes/request/{requestId} endpoint allows the customer to check the status of a property data request and retrieve the complete…
+- [EagleView Get Results API](https://apis.io/apis/eagleview/eagleview-get-results-api/) — The Get Results API from EagleView — 1 operation(s) for get results.
+- [EagleView Get Tile API](https://apis.io/apis/eagleview/eagleview-gettile-api/) — Using the service parameters returned by the GetCapabilities request, the client can utilise the GetTile request to retrieve a 256x256px slippy-map aligned…
+- [EagleView Image Retrieval API](https://apis.io/apis/eagleview/eagleview-image-retrieval-api/) — The Image Retrieval API from EagleView — 1 operation(s) for image retrieval.
+- [EagleView Launch API](https://apis.io/apis/eagleview/eagleview-launch-api/) — TrueDesign is an iFrame application and this API will allow you to initialize your session with varying degrees of customization.
+- [EagleView Management API](https://apis.io/apis/eagleview/eagleview-management-api/) — Programmatic project and API-key management. Authenticates with an `op-mak-…` management token; available on the control_plane and enterprise plans.
+- [EagleView O Auth2 API](https://apis.io/apis/eagleview/eagleview-oauth2-api/) — The OAuth2 API from EagleView — 3 operation(s) for oauth2.
+- [EagleView Optimization API](https://apis.io/apis/eagleview/eagleview-optimization-api/) — TrueDesign's Optimization APIs enables you to access current System Details based on the PV layout and make changes like adjusting to production (kWh)…
+- [EagleView Product Availability API](https://apis.io/apis/eagleview/eagleview-product-availability-api/) — The Product Availability API allows you to check to see if Eagleview has the required imagery to process one or more Solar Products. This process only…
+- [EagleView Request Property Data API](https://apis.io/apis/eagleview/eagleview-request-property-data-api/) — The Request Property Data API from EagleView — 1 operation(s) for request property data.
+- [EagleView Request Property Data (Bulk) API](https://apis.io/apis/eagleview/eagleview-request-property-data-bulk-api/) — The Request Property Data (Bulk) API from EagleView — 1 operation(s) for request property data (bulk).
+- [EagleView Request Property Summary Data API](https://apis.io/apis/eagleview/eagleview-request-property-summary-data-api/) — The Request Property Summary Data API from EagleView — 1 operation(s) for request property summary data.
+- [EagleView Request Property Summary Data (Bulk) API](https://apis.io/apis/eagleview/eagleview-request-property-summary-data-bulk-api/) — The Request Property Summary Data (Bulk) API from EagleView — 1 operation(s) for request property summary data (bulk).
+- [EagleView Roof API](https://apis.io/apis/eagleview/eagleview-roof-api/) — Truedesign's Roof API allows you to retrieve roof summary data and control facets (mounting planes) that can support design.
+- [EagleView Settings API](https://apis.io/apis/eagleview/eagleview-settings-api/) — The Settings API from EagleView — 6 operation(s) for settings.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Eagleview Agentic Access](https://apis.io/agentic-access/eagleview/eagleview-agentic-access/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [EagleView API Rules](https://apis.io/rules/eagleview/eagleview-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Eagleview Authentication](https://apis.io/security/eagleview/eagleview-authentication/)
+- [Eagleview Domain Security](https://apis.io/security/eagleview/eagleview-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Eagleview Plans Pricing](https://apis.io/plans/eagleview/eagleview-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Eagleview Rate Limits](https://apis.io/rate-limits/eagleview/eagleview-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.eagleview.com/)
+- [API reference](https://developer.eagleview.com/api/)
+- [Pricing](https://www.eagleview.com/pricing/)
+- [Blog](https://www.eagleview.com/blogs/)
+- [Terms of service](https://www.eagleview.com/terms)
+- [Privacy policy](https://www.eagleview.com/privacy-statement/)
+
+## API Evangelist rating
+
+**Kin Score 46.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 76.8 |
+| Contract quality | 46.7 |
+| Contract governance | 22.0 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 42.9 |
+| Access clarity | 63.2 |
+
+**Agent readiness 26.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 21.9** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/eagleview/](https://apis.io/providers/eagleview/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for EagleView: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/eagleview/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
